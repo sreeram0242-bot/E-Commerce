@@ -50,7 +50,6 @@ export default function WishlistPage() {
     const product = item.product;
     const primaryImage = product.images?.find((img: any) => img.isPrimary) || product.images?.[0];
     addItem({
-      id: `${product.id}-cart`,
       productId: product.id,
       name: product.name,
       price: product.basePrice,

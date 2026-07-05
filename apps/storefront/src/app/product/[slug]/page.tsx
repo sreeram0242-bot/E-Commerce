@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { AddToCartButton } from '@/components/product/AddToCartButton';
 import { ProductSection } from '@/components/home/ProductSection';
+
+export const dynamic = 'force-dynamic';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 

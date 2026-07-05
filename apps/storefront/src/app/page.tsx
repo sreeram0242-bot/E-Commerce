@@ -4,6 +4,8 @@ import { ProductSection } from '@/components/home/ProductSection';
 import { FeaturesStrip } from '@/components/home/FeaturesStrip';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 
+export const dynamic = 'force-dynamic';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 async function fetchData(endpoint: string) {

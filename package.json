@@ -1,0 +1,29 @@
+{
+  "name": "luxecart-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack e-commerce platform with admin panel and storefront",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,store,admin -c blue,green,yellow \"npm run dev -w packages/api\" \"npm run dev -w apps/storefront\" \"npm run dev -w apps/admin\"",
+    "dev:api": "npm run dev -w packages/api",
+    "dev:storefront": "npm run dev -w apps/storefront",
+    "dev:admin": "npm run dev -w apps/admin",
+    "build": "npm run build -w apps/storefront && npm run build -w apps/admin",
+    "db:generate": "npm run db:generate -w packages/database",
+    "db:push": "npm run db:push -w packages/database",
+    "db:migrate": "npm run db:migrate -w packages/database",
+    "db:seed": "npm run db:seed -w packages/database",
+    "db:studio": "npm run db:studio -w packages/database",
+    "lint": "npm run lint -w apps/storefront && npm run lint -w apps/admin"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

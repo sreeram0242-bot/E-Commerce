@@ -66,16 +66,18 @@ function ShopContent() {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      let query = '?status=PUBLISHED';
-      if (categorySlug) query += `&categorySlug=${categorySlug}`;
-      if (isOnSale) query += `&isOnSale=true`;
-      if (isNewArrival) query += `&isNewArrival=true`;
-      if (isBestSeller) query += `&isBestSeller=true`;
-      if (search) query += `&search=${encodeURIComponent(search)}`;
-      if (sort === 'price_asc') query += `&sortBy=price&sortOrder=asc`;
-      if (sort === 'price_desc') query += `&sortBy=price&sortOrder=desc`;
-      if (sort === 'rating') query += `&sortBy=rating`;
-      if (sort === 'bestseller') query += `&isBestSeller=true`;
+      let query = '?';
+      if (categorySlug) query += `categorySlug=${categorySlug}&`;
+      if (isOnSale) query += `isOnSale=true&`;
+      if (isNewArrival) query += `isNewArrival=true&`;
+      if (isBestSeller) query += `isBestSeller=true&`;
+      if (search) query += `search=${encodeURIComponent(search)}&`;
+      if (sort === 'price_asc') query += `sortBy=price&sortOrder=asc&`;
+      if (sort === 'price_desc') query += `sortBy=price&sortOrder=desc&`;
+      if (sort === 'rating') query += `sortBy=rating&`;
+      if (sort === 'bestseller') query += `isBestSeller=true&`;
+      query = query.endsWith('&') ? query.slice(0, -1) : query;
+      if (query === '?') query = '';
 
       try {
         const res = await fetch(`${API_URL}/products${query}`);

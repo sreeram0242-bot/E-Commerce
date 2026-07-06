@@ -120,17 +120,6 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                 </svg>
               </button>
             </div>
-
-            {/* Add to Cart — Bottom Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <button
-                onClick={handleAddToCart}
-                disabled={product.stock <= 0}
-                className="w-full py-2.5 bg-brand-primary text-white text-sm font-semibold rounded-xl hover:bg-brand-primary-hover transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-              </button>
-            </div>
           </div>
 
           {/* Product Info */}

@@ -3,7 +3,6 @@ import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Toaster } from '@/components/ui/Toaster';
 import { CartDrawer } from '@/components/cart/CartDrawer';
@@ -48,7 +47,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} font-sans`}>
         <ThemeProvider>
-          <AnnouncementBar />
           <Header />
           <CartDrawer />
           <FloatingCartBar />

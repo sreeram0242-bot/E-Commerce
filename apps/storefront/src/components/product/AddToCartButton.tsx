@@ -91,14 +91,19 @@ export function AddToCartButton({ product }: { product: any }) {
                   disabled={isOos}
                   onClick={() => setSelected(prev => ({ ...prev, [groupName]: variant.value }))}
                   className={`
-                    relative min-w-[48px] px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all
+                    relative min-w-[48px] px-4 py-2.5 rounded-xl text-sm font-semibold transition-all border-2
                     ${isSelected
-                      ? 'border-brand-primary bg-brand-primary text-white shadow-md shadow-brand-primary/30'
+                      ? 'text-white'
                       : isOos
-                        ? 'border-brand-border text-brand-text-secondary line-through cursor-not-allowed opacity-50'
-                        : 'border-brand-border text-brand-text-primary hover:border-brand-primary hover:text-brand-primary'
+                        ? 'border-transparent text-brand-text-secondary line-through cursor-not-allowed opacity-50 bg-brand-bg'
+                        : 'border-transparent text-brand-text-primary hover:border-blue-500 bg-brand-bg hover:text-blue-400'
                     }
                   `}
+                  style={isSelected ? {
+                    background: 'linear-gradient(180deg,#4F8DFF 0%,#2563EB 100%)',
+                    border: '2px solid #3B82F6',
+                    boxShadow: '0 0 16px rgba(59,130,246,0.35)',
+                  } : { background: 'rgba(255,255,255,0.05)', border: '2px solid rgba(255,255,255,0.08)' }}
                 >
                   {variant.value}
                   {isOos && !isSelected && (
@@ -170,7 +175,12 @@ export function AddToCartButton({ product }: { product: any }) {
 
           <button
             onClick={handleAdd}
-            className="flex-1 py-3.5 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-primary-hover transition-all shadow-lg shadow-brand-primary/30 active:scale-[0.98]"
+            className="flex-1 py-3.5 text-white font-bold rounded-2xl transition-all active:scale-[0.98]"
+            style={{
+              background: 'linear-gradient(180deg,#4F8DFF 0%,#2563EB 100%)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              boxShadow: '0 12px 28px rgba(37,99,235,0.35)',
+            }}
           >
             Add to Cart
           </button>

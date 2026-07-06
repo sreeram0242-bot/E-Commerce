@@ -55,7 +55,12 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
             >
               <Link
                 href={`/shop?categorySlug=${category.slug}`}
-                className="group block relative overflow-hidden rounded-2xl aspect-square bg-brand-bg border border-brand-border hover:border-brand-primary/30 transition-all duration-300 hover:shadow-xl"
+                className="category-card group block relative overflow-hidden aspect-square bg-brand-bg transition-all duration-300"
+                style={{
+                  borderRadius: '22px',
+                  border: '1px solid rgba(59,130,246,0.20)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                }}
               >
                 {/* Image */}
                 {category.image ? (
@@ -63,8 +68,9 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
                     src={category.image}
                     alt={category.displayName || category.name}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl bg-gradient-to-br from-brand-primary/10 to-brand-accent/10">

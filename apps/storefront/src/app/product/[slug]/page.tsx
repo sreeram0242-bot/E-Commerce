@@ -61,33 +61,32 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
             </Link>
           )}
           
-          <h1 className="text-3xl sm:text-4xl font-display font-bold text-brand-text-primary mb-4">
+          <h1 className="font-display font-bold text-white mb-4 leading-tight" style={{ fontSize: '34px', letterSpacing: '-0.5px' }}>
             {product.name}
           </h1>
 
-          {/* Reviews Summary */}
-          <div className="flex items-center gap-4 mb-6 pb-6 border-b border-brand-border">
+          <div className="flex items-center gap-4 mb-6 pb-6 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill={i < Math.round(product.avgRating) ? '#F59E0B' : 'none'} stroke="#F59E0B" strokeWidth="2">
+                <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill={i < Math.round(product.avgRating) ? '#FBBF24' : 'none'} stroke="#FBBF24" strokeWidth="2">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               ))}
             </div>
-            <span className="text-sm text-brand-text-secondary">{product.reviewCount} Reviews</span>
+            <span className="text-sm" style={{ color: '#9CA3AF' }}>{product.reviewCount} Reviews</span>
           </div>
 
           {/* Price */}
           <div className="flex items-end gap-3 mb-6">
-            <span className="text-4xl font-bold text-brand-text-primary">
+            <span className="font-bold text-white" style={{ fontSize: '42px', fontWeight: 700, lineHeight: 1 }}>
               ₹{product.basePrice.toLocaleString('en-IN')}
             </span>
             {product.compareAtPrice && product.compareAtPrice > product.basePrice && (
               <>
-                <span className="text-xl text-brand-text-secondary line-through mb-1">
+                <span className="text-xl line-through mb-1" style={{ color: '#6B7280' }}>
                   ₹{product.compareAtPrice.toLocaleString('en-IN')}
                 </span>
-                <span className="text-sm font-bold text-brand-error mb-1.5 bg-brand-error/10 px-2 py-0.5 rounded">
+                <span className="text-sm font-bold mb-2 px-2 py-0.5 rounded-lg" style={{ background: 'rgba(249,115,22,0.15)', color: '#F97316', border: '1px solid rgba(249,115,22,0.3)' }}>
                   {discount}% OFF
                 </span>
               </>

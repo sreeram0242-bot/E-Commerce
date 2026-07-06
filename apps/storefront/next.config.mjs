@@ -8,9 +8,10 @@ const nextConfig = {
       { protocol: 'https', hostname: 'picsum.photos' },
       { protocol: 'https', hostname: 'fakestoreapi.com' },
       { protocol: 'https', hostname: 'i.imgur.com' },
+      { protocol: 'https', hostname: '*.supabase.co' },
       { protocol: 'http', hostname: 'localhost' },
     ],
-    unoptimized: false,
+    unoptimized: true,
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api',

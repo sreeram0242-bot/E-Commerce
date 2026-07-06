@@ -41,11 +41,14 @@ export function Header() {
     <>
       <SearchOverlay />
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-brand-surface/95 backdrop-blur-lg shadow-md border-b border-brand-border'
-            : 'bg-brand-surface border-b border-brand-border'
-        }`}
+        className={`sticky top-0 z-40 transition-all duration-300`}
+        style={{
+          background: isScrolled ? 'rgba(10,10,10,0.90)' : 'rgba(10,10,10,0.75)',
+          backdropFilter: 'blur(18px)',
+          WebkitBackdropFilter: 'blur(18px)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          boxShadow: isScrolled ? '0 4px 30px rgba(0,0,0,0.3)' : 'none',
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">

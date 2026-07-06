@@ -1,7 +1,7 @@
 import { HeroBanner } from '@/components/home/HeroBanner';
 import { CategoryGrid } from '@/components/home/CategoryGrid';
 import { ProductSection } from '@/components/home/ProductSection';
-import { FeaturesStrip } from '@/components/home/FeaturesStrip';
+
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 
 export const dynamic = 'force-dynamic';
@@ -90,8 +90,6 @@ export default async function HomePage() {
       {/* Hero Banner */}
       <HeroBanner banners={demoBanners} />
 
-      {/* Features Strip */}
-      <FeaturesStrip />
 
       {/* Category Grid */}
       <CategoryGrid categories={demoCategories} />

@@ -49,11 +49,11 @@ export const useCartStore = create<CartStore>()(
           if (existingIndex > -1) {
             const items = [...state.items];
             items[existingIndex].quantity += item.quantity;
-            return { items, isOpen: true };
+            return { items };
           }
 
           const id = `${item.productId}-${item.variantId || 'default'}-${Date.now()}`;
-          return { items: [...state.items, { ...item, id }], isOpen: true };
+          return { items: [...state.items, { ...item, id }] };
         });
       },
 

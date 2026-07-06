@@ -40,7 +40,15 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
     : 0;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-medium text-brand-text-secondary hover:text-brand-primary mb-8 transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        Back to Shop
+      </Link>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
         {/* Gallery */}
         <ProductGallery images={product.images} productName={product.name} />

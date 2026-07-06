@@ -107,10 +107,10 @@ export function HeroBanner({ banners }: HeroBannerProps) {
                   {banner.ctaText && banner.ctaLink && (
                     <Link
                       href={banner.ctaLink}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-accent text-white font-semibold rounded-xl hover:bg-brand-accent-hover transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 text-sm bg-brand-accent text-white font-semibold rounded-xl hover:bg-brand-accent-hover transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                     >
                       {banner.ctaText}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
                       </svg>
@@ -122,29 +122,7 @@ export function HeroBanner({ banners }: HeroBannerProps) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Arrows */}
-        {banners.length > 1 && (
-          <>
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/40 transition-all z-10"
-              aria-label="Previous slide"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/40 transition-all z-10"
-              aria-label="Next slide"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </>
-        )}
+        {/* Navigation Arrows Removed */}
 
         {/* Dots */}
         {banners.length > 1 && (

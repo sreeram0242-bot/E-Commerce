@@ -16,43 +16,58 @@ export const orderRouter = Router();
 
 orderRouter.post('/', optionalAuth, validate(createOrderSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { shippingAddress, paymentMethod, couponCode, notes } = req.body;
+    const { shippingAddress, paymentMethod, couponCode, notes, items: bodyItems } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
       throw new AppError(401, 'Please login to place an order');
     }
 
-    // Get cart items
-    const cartItems = await prisma.cartItem.findMany({
-      where: { userId },
-      include: {
-        product: { include: { images: { where: { isPrimary: true }, take: 1 } } },
-        variant: true,
-      },
-    });
-
-    if (cartItems.length === 0) {
+    if (!bodyItems || bodyItems.length === 0) {
       throw new AppError(400, 'Cart is empty');
     }
 
-    // Calculate totals
+    // Calculate totals securely from database
     let subtotal = 0;
-    const orderItems = cartItems.map(item => {
-      const price = item.variant?.price || item.product.basePrice;
+    const orderItems = [];
+
+    for (const item of bodyItems) {
+      const product = await prisma.product.findUnique({
+        where: { id: item.productId },
+        include: { images: { where: { isPrimary: true }, take: 1 } }
+      });
+      
+      if (!product) continue;
+
+      let price = product.basePrice;
+      let variantLabel = null;
+
+      if (item.variantId) {
+        const variant = await prisma.productVariant.findUnique({ where: { id: item.variantId } });
+        if (variant) {
+          price = variant.price || product.basePrice;
+          variantLabel = `${variant.name}: ${variant.value}`;
+        }
+      }
+
       const total = price * item.quantity;
       subtotal += total;
-      return {
-        productId: item.productId,
+
+      orderItems.push({
+        productId: product.id,
         variantId: item.variantId,
-        name: item.product.name,
-        image: item.product.images[0]?.url || null,
-        variant: item.variant ? `${item.variant.name}: ${item.variant.value}` : null,
+        name: product.name,
+        image: product.images[0]?.url || null,
+        variant: variantLabel,
         price,
         quantity: item.quantity,
         total,
-      };
-    });
+      });
+    }
+
+    if (orderItems.length === 0) {
+      throw new AppError(400, 'Valid products not found in cart');
+    }
 
     // Apply coupon
     let discount = 0;
@@ -109,7 +124,7 @@ orderRouter.post('/', optionalAuth, validate(createOrderSchema), async (req: Req
     });
 
     // Update product stock & sold count
-    for (const item of cartItems) {
+    for (const item of orderItems) {
       await prisma.product.update({
         where: { id: item.productId },
         data: {
@@ -119,8 +134,7 @@ orderRouter.post('/', optionalAuth, validate(createOrderSchema), async (req: Req
       });
     }
 
-    // Clear cart
-    await prisma.cartItem.deleteMany({ where: { userId } });
+    // (Cart clearing is handled by the frontend store)
 
     res.status(201).json({
       success: true,

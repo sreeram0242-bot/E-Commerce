@@ -22,6 +22,13 @@ export default async function CategoriesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="mb-8">
+        <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-brand-text-secondary hover:text-brand-primary mb-6 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+          Back to Home
+        </Link>
         <h1 className="text-3xl font-display font-bold text-brand-text-primary">All Categories</h1>
         <p className="text-brand-text-secondary mt-1 text-sm">Browse all product categories</p>
       </div>

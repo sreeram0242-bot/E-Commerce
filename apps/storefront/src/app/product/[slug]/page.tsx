@@ -61,7 +61,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
             </Link>
           )}
           
-          <h1 className="font-display font-bold text-white mb-4 leading-tight" style={{ fontSize: '34px', letterSpacing: '-0.5px' }}>
+          <h1 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4 leading-tight" style={{ letterSpacing: '-0.5px' }}>
             {product.name}
           </h1>
 
@@ -78,7 +78,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 
           {/* Price */}
           <div className="flex items-end gap-3 mb-6">
-            <span className="font-bold text-white" style={{ fontSize: '42px', fontWeight: 700, lineHeight: 1 }}>
+            <span className="text-3xl sm:text-4xl font-bold text-white" style={{ fontWeight: 700, lineHeight: 1 }}>
               ₹{product.basePrice.toLocaleString('en-IN')}
             </span>
             {product.compareAtPrice && product.compareAtPrice > product.basePrice && (

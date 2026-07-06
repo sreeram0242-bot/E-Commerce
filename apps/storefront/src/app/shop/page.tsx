@@ -200,6 +200,13 @@ function ShopContent() {
         <div className="flex-1 min-w-0">
           <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
+              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-brand-text-secondary hover:text-brand-primary mb-4 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="19" y1="12" x2="5" y2="12" />
+                  <polyline points="12 19 5 12 12 5" />
+                </svg>
+                Back to Home
+              </Link>
               <h1 className="text-2xl font-bold text-brand-text-primary">{pageTitle}</h1>
               <p className="text-sm text-brand-text-secondary mt-1">{loading ? '...' : `${products.length} results`}</p>
             </div>
